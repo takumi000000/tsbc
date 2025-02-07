@@ -13,5 +13,8 @@ Rails.application.routes.draw do
   root "tops#index"
   post "tops/start_survey", as: :start_survey
   get "surveys/index", as: :surveys
+  get "surveys/evaluation", as: :evaluation
   post "surveys/create", as: :create_surveys
+  post "surveys/create2", as: :create_surveys2
+  get "surveys/fin", as: :fin
 end

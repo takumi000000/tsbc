@@ -11,4 +11,20 @@
 # It's strongly recommended that you check this file into your version control system.
 
 ActiveRecord::Schema[8.0].define(version: 2025_02_07_032457) do
+  create_table "answers", force: :cascade do |t|
+    t.string "student_number"
+    t.string "department"
+    t.string "course"
+    t.string "grade"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "content"
+  end
+
+  create_table "questions", force: :cascade do |t|
+    t.string "question"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "q_id"
+  end
 end
