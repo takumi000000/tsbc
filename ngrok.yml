@@ -1,0 +1,7 @@
+version: "2"
+authtoken: "2shXqoyWCoAIZA28KbFtmxrdZDd_81o8CHvmfN59frCS4zKjk"
+tunnels:
+  nginx:
+    proto: http
+    addr: http://10.10.110.101:3000 #ここに接続したいサービス
+    host_header: rewrite

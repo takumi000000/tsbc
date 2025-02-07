@@ -22,3 +22,6 @@ Things you may want to cover:
 * Deployment instructions
 
 * ...
+
+NgrokのURL確認
+http://localhost:4040/
