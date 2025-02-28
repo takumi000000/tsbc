@@ -4,10 +4,10 @@ class SurveysController < ApplicationController
     end
     def evaluation
         @questions2 = Question.where(q_id: 2)
-        @teacher = @@info[:teacher]
+        @teacher = session[:info]["teacher"]
 
         # 学科ごとに担当教員を振り分ける
-        # case @@info[:department]
+        # case session[:info][:department]
         # when "医療事務"
         #     @teacher = ["黒田","中井","平野", "遠藤"]
         # when "地域経済医療事務"
@@ -30,7 +30,7 @@ class SurveysController < ApplicationController
         
     end
     def fin
-        @student_number = @@info[:student_number]
+        @student_number = session[:info]["student_number"]
     end
     def create
         ary = []
@@ -44,10 +44,10 @@ class SurveysController < ApplicationController
         ary << params[:improvement_points]
 
         Answer.create(
-            student_number: @@info[:student_number], 
-            department: @@info[:department], 
-            course: @@info[:course], 
-            grade: @@info[:grade], 
+            student_number: session[:info]["student_number"], 
+            department: session[:info]["department"], 
+            course: session[:info]["course"], 
+            grade: session[:info]["grade"], 
             content: ary)
         redirect_to controller: 'surveys', action: 'evaluation'
     end
@@ -56,7 +56,7 @@ class SurveysController < ApplicationController
         ary << params[:teacher]
 
         # 選択した担当教員を削除
-        @@info[:teacher].delete(params[:teacher])
+        session[:info]["teacher"].delete(params[:teacher])
 
         Question.where(q_id: 1).size.times do |i|
             ary << params["q#{i+1}".to_sym]
@@ -66,14 +66,14 @@ class SurveysController < ApplicationController
         ary << params[:improvement_points]
 
         Answer.create(
-            student_number: @@info[:student_number], 
-            department: @@info[:department], 
-            course: @@info[:course], 
-            grade: @@info[:grade], 
+            student_number: session[:info]["student_number"], 
+            department: session[:info]["department"], 
+            course: session[:info]["course"], 
+            grade: session[:info]["grade"], 
             content: ary)
             puts Answer.last.content
 
-        if @@info[:teacher].empty?
+        if session[:info]["teacher"].empty?
             redirect_to controller: 'surveys', action: 'fin'
         else
             redirect_to controller: 'surveys', action: 'evaluation'
