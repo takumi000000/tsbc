@@ -26,6 +26,5 @@ Things you may want to cover:
 NgrokのURL確認
 http://localhost:4040/
 
-"2shXqoyWCoAIZA28KbFtmxrdZDd_81o8CHvmfN59frCS4zKjk"
 
 https://takumi000000.github.io/QRCode_generator.github.io/
