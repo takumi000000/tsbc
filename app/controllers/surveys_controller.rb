@@ -58,7 +58,7 @@ class SurveysController < ApplicationController
         # 選択した担当教員を削除
         session[:info]["teacher"].delete(params[:teacher])
 
-        Question.where(q_id: 1).size.times do |i|
+        Question.where(q_id: 2).size.times do |i|
             ary << params["q#{i+1}".to_sym]
         end
 
