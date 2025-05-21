@@ -2,6 +2,16 @@ class SurveysController < ApplicationController
     def index
         @questions1 = Question.where(q_id: 1)
     end
+    def subject_select
+        subject   = Subject.find_by!(c_code: params[:id])
+        @courses  = subject.courses.order(:name)
+    
+        respond_to do |format|
+          format.turbo_stream
+          format.json { render json: @courses.select(:id, :name) }
+        end
+    end
+
     def evaluation
         @questions2 = Question.where(q_id: 2)
         @teacher = session[:info]["teacher"]

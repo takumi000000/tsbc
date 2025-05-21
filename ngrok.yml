@@ -3,5 +3,5 @@ authtoken: ""
 tunnels:
   nginx:
     proto: http
-    addr: http://10.10.52.25:3000 #ここに接続したいサービス
+    addr: http://10.10.110.101:3000 #ここに接続したいサービス
     host_header: rewrite

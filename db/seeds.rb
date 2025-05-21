@@ -8,6 +8,8 @@
 #     MovieGenre.find_or_create_by!(name: genre_name)
 #   end
 
+# 質問事項の作成
+puts "Creating questions..."
 [
     "私は、講義(学科)の授業に意欲的に取り組んでいる",
     "私は、演習(実習)の授業に意欲的に取り組んでいる",
@@ -42,3 +44,35 @@ end
 ].each do |que|
     Question.find_or_create_by!(question: que, q_id: 2)
 end
+
+# 学科・コースの作成
+puts "Creating subjects and courses..."
+ci = Subject.create!(name: "地域経済医療事務学科", c_code: "CI")
+ci.courses.create!(name: "地域経済コース", s_code: "CI")
+ci.courses.create!(name: "医療事務コース", s_code: "CI")
+
+ko = Subject.create!(name: "公務員学科", c_code: "KO")
+ko.courses.create!(name: "公務員1年コース", s_code: "KO")
+ko.courses.create!(name: "公務員2年コース", s_code: "KO")
+
+anm = Subject.create!(name: "動物学科", c_code: "ANM")
+anm.courses.create!(name: "メディカルトリマーコース", s_code: "ANM")
+
+it = Subject.create!(name: "IT学科", c_code: "IT")
+it.courses.create!(name: "Rubyエンジニアコース", s_code: "IT")
+it.courses.create!(name: "モバイルエンジニアコース", s_code: "IT")
+
+it2 = Subject.create!(name: "IT学科(米子)", c_code: "ITY")
+it2.courses.create!(name: "Rubyエンジニアコース", s_code: "ITY")
+it2.courses.create!(name: "モバイルエンジニアコース", s_code: "ITY")
+
+cld = Subject.create!(name: "こども総合学科", c_code: "CLD")
+cld.courses.create!(name: "こども総合コース", s_code: "CLD")
+
+car = Subject.create!(name: "国際自動車整備士学科", c_code: "CAR")
+car.courses.create!(name: "2級自動車整備士コース", s_code: "CAR")
+
+kkb = Subject.create!(name: "国際観光ビジネス学科", c_code: "KKB")
+kkb.courses.create!(name: "ビジネス観光コース", s_code: "KKB")
+
+puts "Seeding completed!"
