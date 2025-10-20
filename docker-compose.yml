@@ -1,0 +1,30 @@
+version: '3.8'
+services:
+  feedback:
+    build: .
+    container_name: feedback  # コンテナ名を "feedback" に統一
+    ports:
+      - "3000:3000"           # ホスト:コンテナ
+    volumes:
+      - .:/app                # ローカルのソースをコンテナにマウント（開発用）
+    # SQLite3はファイルベースなので、サービス分割はしない
+    # networks:
+    #   - feedbacknet
+
+  ngrok:
+    image: ngrok/ngrok:latest
+    restart: unless-stopped
+    command:
+      - "start"
+      - "--all"
+      - "--config"
+      - "/etc/ngrok.yml"
+    ports:
+      - 4040:4040
+    volumes:
+      - ./ngrok.yml:/etc/ngrok.yml
+
+# ネットワーク設定が必要な場合は以下のように定義
+# networks:
+#   feedbacknet:
+#     driver: bridge

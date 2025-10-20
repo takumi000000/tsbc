@@ -1,0 +1,7 @@
+version: "2"
+authtoken: ""
+tunnels:
+  nginx:
+    proto: http
+    addr: http://10.10.52.24:3000 #ここに接続したいサービス
+    host_header: rewrite
