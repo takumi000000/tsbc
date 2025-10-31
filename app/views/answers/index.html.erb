@@ -1,0 +1,60 @@
+<div class="container my-4">
+  <h1 class="mb-4">授業評価マスタ</h1>
+
+  <div class="table-responsive">
+    <table class="table table-bordered table-striped align-middle">
+      <thead class="table-light">
+        <tr>
+          <th scope="col">ID</th>
+          <th scope="col">学籍番号</th>
+          <th scope="col">学科名</th>
+          <th scope="col">コース名</th>
+          <th scope="col">学年</th>
+          <th scope="col">教員名</th>
+          <th scope="col">評価（15項目）</th>
+          <th scope="col">良い点</th>
+          <th scope="col">悪い点</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% if @answers.any? %>
+          <% @answers.each do |answer| %>
+            <tr>
+              <td><%= answer.id %></td>
+              <td><%= answer.student_number %></td>
+              <td><%= answer.subject&.name || answer.department %></td>
+              <td><%= answer.course %></td>
+              <td>
+                <% grade = answer.grade.to_s %>
+                <%= if grade.blank?
+                      ""
+                    elsif grade.end_with?("年")
+                      grade
+                    else
+                      "#{grade}年"
+                    end %>
+              </td>
+              <td><%= answer.teacher_name %></td>
+              <td>
+                <ol class="mb-0 ps-3">
+                  <% @questions.each_with_index do |question, index| %>
+                    <li class="mb-1">
+                      <div><strong><%= question.question %></strong></div>
+                      <div>回答：<%= answer.evaluation_scores[index] || "-" %></div>
+                    </li>
+                  <% end %>
+                </ol>
+              </td>
+              <td><%= simple_format(answer.good_points.presence || "-") %></td>
+              <td><%= simple_format(answer.improvement_points.presence || "-") %></td>
+            </tr>
+          <% end %>
+        <% else %>
+          <tr>
+            <td colspan="9" class="text-center">表示できる回答がありません。</td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>
