@@ -18,5 +18,6 @@ Rails.application.routes.draw do
   post "surveys/create", as: :create_surveys
   post "surveys/create2", as: :create_surveys2
   get "surveys/fin", as: :fin
-  
+
+  resources :answers, only: :index
 end
